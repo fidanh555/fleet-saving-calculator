@@ -11,11 +11,11 @@ function calculateSavings() {
         return;
     }
 
-    const iceFuelConsumption = calculateFuelConsumption(iceConsumption, mileage);
-    const evElectricityConsumption = calculateFuelConsumption(evConsumption, mileage);
+    const iceFuelConsumption = (iceConsumption * mileage) / 100;
+    const evElectricityConsumption = (evConsumption * mileage) / 100;
 
-    const iceFuelCost = calculateFuelCost(iceFuelConsumption, fuelCost, numVehicles);
-    const evElectricityCost = calculateElectricityCost(evElectricityConsumption, electricityCost, numVehicles);
+    const iceFuelCost = iceFuelConsumption * fuelCost * numVehicles;
+    const evElectricityCost = evElectricityConsumption * electricityCost * numVehicles;
 
     const totalSavings = iceFuelCost - evElectricityCost;
     const perVehicleSavings = totalSavings / numVehicles;
@@ -27,27 +27,11 @@ function getInputValue(id) {
     return document.getElementById(id).value.trim();
 }
 
-function calculateFuelConsumption(consumption, mileage) {
-    return (consumption * mileage) / 100;
-}
-
-function calculateFuelCost(fuelConsumption, fuelCost, numVehicles) {
-    return fuelConsumption * fuelCost * numVehicles;
-}
-
-function calculateElectricityCost(electricityConsumption, electricityCost, numVehicles) {
-    return electricityConsumption * electricityCost * numVehicles;
-}
-
 function displayResult(totalSavings, perVehicleSavings) {
-    const totalSavingsElement = document.getElementById('totalSavingsValue');
-    const perVehicleSavingsElement = document.getElementById('perVehicleSavingsValue');
-
-    totalSavingsElement.textContent = totalSavings.toFixed(2);
-    perVehicleSavingsElement.textContent = perVehicleSavings.toFixed(2);
+    document.getElementById('totalSavingsValue').textContent = totalSavings.toFixed(2);
+    document.getElementById('perVehicleSavingsValue').textContent = perVehicleSavings.toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Add event listener to the button
     document.getElementById('calculateButton').addEventListener('click', calculateSavings);
 });
