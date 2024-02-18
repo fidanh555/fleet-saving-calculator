@@ -25,6 +25,9 @@ function calculateSavings() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Add event listener to the button
-    document.getElementById('calculateButton').addEventListener('click', calculateSavings);
+    // Delay the setup to ensure all elements are loaded
+    setTimeout(function() {
+        // Add event listener to the button
+        document.getElementById('calculateButton').addEventListener('click', calculateSavings);
+    }, 1000); // Adjust the delay time as needed
 });
