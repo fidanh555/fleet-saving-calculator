@@ -1,33 +1,50 @@
 function calculateSavings() {
     console.log("Button clicked!"); // Add this line to check if the button click event is registered
 
-    const numVehicles = parseInt(document.getElementById('numVehicles').value);
-    const mileage = parseFloat(document.getElementById('mileage').value);
-    const fuelCost = parseFloat(document.getElementById('fuelCost').value);
-    const iceConsumption = parseFloat(document.getElementById('iceConsumption').value);
-    const evConsumption = parseFloat(document.getElementById('evConsumption').value);
-    const electricityCost = parseFloat(document.getElementById('electricityCost').value);
+    const numVehicles = parseInt(getInputValue('numVehicles'));
+    const mileage = parseFloat(getInputValue('mileage'));
+    const fuelCost = parseFloat(getInputValue('fuelCost'));
+    const iceConsumption = parseFloat(getInputValue('iceConsumption'));
+    const evConsumption = parseFloat(getInputValue('evConsumption'));
+    const electricityCost = parseFloat(getInputValue('electricityCost'));
 
     if (isNaN(numVehicles) || isNaN(mileage) || isNaN(fuelCost) || isNaN(iceConsumption) || isNaN(evConsumption) || isNaN(electricityCost)) {
         alert('Please enter valid numbers for all fields.');
         return;
     }
 
-    const iceFuelConsumption = (iceConsumption * mileage) / 100;
-    const evElectricityConsumption = (evConsumption * mileage) / 100;
+    const iceFuelConsumption = calculateFuelConsumption(iceConsumption, mileage);
+    const evElectricityConsumption = calculateFuelConsumption(evConsumption, mileage);
 
-    const iceFuelCost = iceFuelConsumption * fuelCost * numVehicles;
-    const evElectricityCost = evElectricityConsumption * electricityCost * numVehicles;
+    const iceFuelCost = calculateFuelCost(iceFuelConsumption, fuelCost, numVehicles);
+    const evElectricityCost = calculateElectricityCost(evElectricityConsumption, electricityCost, numVehicles);
 
     const savings = iceFuelCost - evElectricityCost;
 
-    document.getElementById('result').innerHTML = `Monthly Savings: €${savings.toFixed(2)}`;
+    displayResult(`Monthly Savings: €${savings.toFixed(2)}`);
+}
+
+function getInputValue(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function calculateFuelConsumption(consumption, mileage) {
+    return (consumption * mileage) / 100;
+}
+
+function calculateFuelCost(fuelConsumption, fuelCost, numVehicles) {
+    return fuelConsumption * fuelCost * numVehicles;
+}
+
+function calculateElectricityCost(electricityConsumption, electricityCost, numVehicles) {
+    return electricityConsumption * electricityCost * numVehicles;
+}
+
+function displayResult(resultText) {
+    document.getElementById('result').innerHTML = resultText;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Delay the setup to ensure all elements are loaded
-    setTimeout(function() {
-        // Add event listener to the button
-        document.getElementById('calculateButton').addEventListener('click', calculateSavings);
-    }, 1000); // Adjust the delay time as needed
+    // Add event listener to the button
+    document.getElementById('calculateButton').addEventListener('click', calculateSavings);
 });
