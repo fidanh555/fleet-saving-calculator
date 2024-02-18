@@ -1,4 +1,6 @@
 function calculateSavings() {
+    console.log("Button clicked!"); // Add this line to check if the button click event is registered
+
     const numVehicles = parseInt(document.getElementById('numVehicles').value);
     const mileage = parseFloat(document.getElementById('mileage').value);
     const fuelCost = parseFloat(document.getElementById('fuelCost').value);
@@ -22,7 +24,6 @@ function calculateSavings() {
     document.getElementById('result').innerHTML = `Monthly Savings: €${savings.toFixed(2)}`;
 }
 
-// Add event listener when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', function () {
     // Add event listener to the button
     document.getElementById('calculateButton').addEventListener('click', calculateSavings);
