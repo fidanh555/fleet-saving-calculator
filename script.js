@@ -69,6 +69,9 @@ function getInputValue(id) {
 function displayResult(totalSavings, perVehicleSavings) {
     document.getElementById('totalSavingsValue').textContent = roundToDecimal(totalSavings, 2);
     document.getElementById('perVehicleSavingsValue').textContent = roundToDecimal(perVehicleSavings, 2);
+
+    // Log the entire result section for troubleshooting
+    console.log('Result Section:', document.getElementById('result'));
 }
 
 function roundToDecimal(value, decimalPlaces) {
