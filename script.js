@@ -1,12 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('calculateButton').addEventListener('click', function () {
+        console.log('Calculate button clicked');
         if (validateInputs()) {
+            console.log('Inputs are valid');
             calculateSavings();
+        } else {
+            console.log('Inputs are not valid');
         }
     });
 });
 
 function calculateSavings() {
+    console.log('Calculating savings...');
+
     const numVehicles = parseFloat(getInputValue('numVehicles'));
     console.log('numVehicles:', numVehicles);
 
@@ -21,6 +27,7 @@ function calculateSavings() {
 
     if (!areInputsValid(numVehicles, mileage, fuelCost, iceConsumption, evConsumption, electricityCost)) {
         displayError('Please enter valid numerical values for all fields.');
+        console.log('Validation failed');
         return;
     }
 
@@ -32,7 +39,8 @@ function calculateSavings() {
 
     const totalSavings = iceFuelCost - evElectricityCost;
     const perVehicleSavings = totalSavings / numVehicles;
-    console.log('perVehicleSavings:', perVehicleSavings);
+    console.log('Total Savings:', totalSavings);
+    console.log('Per Vehicle Savings:', perVehicleSavings);
 
     displayResult(totalSavings, perVehicleSavings);
 }
@@ -69,9 +77,6 @@ function getInputValue(id) {
 function displayResult(totalSavings, perVehicleSavings) {
     document.getElementById('totalSavingsValue').textContent = roundToDecimal(totalSavings, 2);
     document.getElementById('perVehicleSavingsValue').textContent = roundToDecimal(perVehicleSavings, 2);
-
-    // Log the entire result section for troubleshooting
-    console.log('Result Section:', document.getElementById('result'));
 }
 
 function roundToDecimal(value, decimalPlaces) {
