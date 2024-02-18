@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('calculateButton').addEventListener('click', function () {
+        if (validateInputs()) {
+            calculateSavings();
+        }
+    });
+});
+
 function calculateSavings() {
     const numVehicles = parseFloat(getInputValue('numVehicles'));
     const mileage = parseFloat(getInputValue('mileage'));
@@ -64,8 +72,7 @@ function roundToDecimal(value, decimalPlaces) {
     return parseFloat(value.toFixed(decimalPlaces));
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('calculateButton').addEventListener('click', function () {
-        calculateSavings();
-    });
-});
+function validateInputs() {
+    // Add specific validation checks if needed
+    return true; // Return false if any validation fails
+}
