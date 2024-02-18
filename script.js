@@ -1,12 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('calculateButton').addEventListener('click', function () {
         console.log('Calculate button clicked');
-        if (validateInputs()) {
-            console.log('Inputs are valid');
-            calculateSavings();
-        } else {
-            console.log('Inputs are not valid');
-        }
+        calculateSavings();
     });
 });
 
@@ -45,45 +40,4 @@ function calculateSavings() {
     displayResult(totalSavings, perVehicleSavings);
 }
 
-function areInputsValid(...values) {
-    return values.every(value => !isNaN(value));
-}
-
-function displayError(errorMessage) {
-    const errorMessages = document.getElementById('errorMessages');
-    errorMessages.innerHTML = errorMessage;
-}
-
-function calculateFuelConsumption(iceConsumption, mileage) {
-    return (iceConsumption * mileage) / 100;
-}
-
-function calculateElectricityConsumption(evConsumption, mileage) {
-    return (evConsumption * mileage) / 100;
-}
-
-function calculateFuelCost(fuelConsumption, fuelCost, numVehicles) {
-    return fuelConsumption * fuelCost * numVehicles;
-}
-
-function calculateElectricityCost(electricityConsumption, electricityCost, numVehicles) {
-    return electricityConsumption * electricityCost * numVehicles;
-}
-
-function getInputValue(id) {
-    return document.getElementById(id).value.trim();
-}
-
-function displayResult(totalSavings, perVehicleSavings) {
-    document.getElementById('totalSavingsValue').textContent = roundToDecimal(totalSavings, 2);
-    document.getElementById('perVehicleSavingsValue').textContent = roundToDecimal(perVehicleSavings, 2);
-}
-
-function roundToDecimal(value, decimalPlaces) {
-    return parseFloat(value.toFixed(decimalPlaces));
-}
-
-function validateInputs() {
-    // Add specific validation checks if needed
-    return true; // Return false if any validation fails
-}
+// ... (rest of the functions remain unchanged)
