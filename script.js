@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function calculateSavings() {
     const numVehicles = parseFloat(getInputValue('numVehicles'));
+    console.log('numVehicles:', numVehicles);
+
     const mileage = parseFloat(getInputValue('mileage'));
     const fuelCost = parseFloat(getInputValue('fuelCost'));
     const iceConsumption = parseFloat(getInputValue('iceConsumption'));
@@ -30,6 +32,7 @@ function calculateSavings() {
 
     const totalSavings = iceFuelCost - evElectricityCost;
     const perVehicleSavings = totalSavings / numVehicles;
+    console.log('perVehicleSavings:', perVehicleSavings);
 
     displayResult(totalSavings, perVehicleSavings);
 }
