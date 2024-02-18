@@ -1,6 +1,4 @@
 function calculateSavings() {
-    console.log("Button clicked!"); // Add this line to check if the button click event is registered
-
     const numVehicles = parseInt(getInputValue('numVehicles'));
     const mileage = parseFloat(getInputValue('mileage'));
     const fuelCost = parseFloat(getInputValue('fuelCost'));
@@ -19,9 +17,10 @@ function calculateSavings() {
     const iceFuelCost = calculateFuelCost(iceFuelConsumption, fuelCost, numVehicles);
     const evElectricityCost = calculateElectricityCost(evElectricityConsumption, electricityCost, numVehicles);
 
-    const savings = iceFuelCost - evElectricityCost;
+    const totalSavings = iceFuelCost - evElectricityCost;
+    const perVehicleSavings = totalSavings / numVehicles;
 
-    displayResult(`Monthly Savings: €${savings.toFixed(2)}`);
+    displayResult(totalSavings, perVehicleSavings);
 }
 
 function getInputValue(id) {
@@ -40,8 +39,9 @@ function calculateElectricityCost(electricityConsumption, electricityCost, numVe
     return electricityConsumption * electricityCost * numVehicles;
 }
 
-function displayResult(resultText) {
-    document.getElementById('result').innerHTML = resultText;
+function displayResult(totalSavings, perVehicleSavings) {
+    document.getElementById('totalSavingsValue').textContent = totalSavings.toFixed(2);
+    document.getElementById('perVehicleSavingsValue').textContent = perVehicleSavings.toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
