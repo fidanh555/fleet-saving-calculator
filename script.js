@@ -40,8 +40,11 @@ function calculateElectricityCost(electricityConsumption, electricityCost, numVe
 }
 
 function displayResult(totalSavings, perVehicleSavings) {
-    document.getElementById('totalSavingsValue').textContent = totalSavings.toFixed(2);
-    document.getElementById('perVehicleSavingsValue').textContent = perVehicleSavings.toFixed(2);
+    const totalSavingsElement = document.getElementById('totalSavingsValue');
+    const perVehicleSavingsElement = document.getElementById('perVehicleSavingsValue');
+
+    totalSavingsElement.textContent = totalSavings.toFixed(2);
+    perVehicleSavingsElement.textContent = perVehicleSavings.toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
