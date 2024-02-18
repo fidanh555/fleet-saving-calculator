@@ -44,9 +44,13 @@ button:hover {
 #result {
     margin-top: 20px;
     font-weight: bold;
-    display: block;
+    display: block; /* Ensure the result section is visible */
 }
 
 #result p {
-    margin: 0;
+    margin: 0; /* Remove default margin and spacing */
+}
+
+#errorMessages {
+    color: red;
 }
