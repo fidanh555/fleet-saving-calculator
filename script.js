@@ -6,8 +6,11 @@ function calculateSavings() {
     const evConsumption = parseFloat(getInputValue('evConsumption'));
     const electricityCost = parseFloat(getInputValue('electricityCost'));
 
+    const errorMessages = document.getElementById('errorMessages');
+    errorMessages.innerHTML = ''; // Clear previous error messages
+
     if (!areInputsValid(numVehicles, mileage, fuelCost, iceConsumption, evConsumption, electricityCost)) {
-        alert('Please enter valid numerical values for all fields.');
+        displayError('Please enter valid numerical values for all fields.');
         return;
     }
 
@@ -25,6 +28,11 @@ function calculateSavings() {
 
 function areInputsValid(...values) {
     return values.every(value => !isNaN(value));
+}
+
+function displayError(errorMessage) {
+    const errorMessages = document.getElementById('errorMessages');
+    errorMessages.innerHTML = errorMessage;
 }
 
 function calculateFuelConsumption(iceConsumption, mileage) {
@@ -58,13 +66,6 @@ function roundToDecimal(value, decimalPlaces) {
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('calculateButton').addEventListener('click', function () {
-        if (validateInputs()) {
-            calculateSavings();
-        }
+        calculateSavings();
     });
-    
-    function validateInputs() {
-        // Add more specific validation checks if needed
-        return true; // Return false if any validation fails
-    }
 });
