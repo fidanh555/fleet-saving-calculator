@@ -1,25 +1,12 @@
 function calculateSavings() {
     const numVehicles = parseInt(getInputValue('numVehicles'));
-    const mileage = parseFloat(getInputValue('mileage'));
-    const fuelCost = parseFloat(getInputValue('fuelCost'));
-    const iceConsumption = parseFloat(getInputValue('iceConsumption'));
-    const evConsumption = parseFloat(getInputValue('evConsumption'));
-    const electricityCost = parseFloat(getInputValue('electricityCost'));
+    // Add other input variables as needed
 
-    if (isNaN(numVehicles) || isNaN(mileage) || isNaN(fuelCost) || isNaN(iceConsumption) || isNaN(evConsumption) || isNaN(electricityCost)) {
-        alert('Please enter valid numbers for all fields.');
-        return;
-    }
+    // Perform calculations
+    const totalSavings = calculateTotalSavings(/* add parameters as needed */);
+    const perVehicleSavings = calculatePerVehicleSavings(/* add parameters as needed */);
 
-    const iceFuelConsumption = calculateFuelConsumption(iceConsumption, mileage);
-    const evElectricityConsumption = calculateFuelConsumption(evConsumption, mileage);
-
-    const iceFuelCost = calculateFuelCost(iceFuelConsumption, fuelCost, numVehicles);
-    const evElectricityCost = calculateElectricityCost(evElectricityConsumption, electricityCost, numVehicles);
-
-    const totalSavings = iceFuelCost - evElectricityCost;
-    const perVehicleSavings = totalSavings / numVehicles;
-
+    // Display results
     displayResult(totalSavings, perVehicleSavings);
 }
 
@@ -39,12 +26,19 @@ function calculateElectricityCost(electricityConsumption, electricityCost, numVe
     return electricityConsumption * electricityCost * numVehicles;
 }
 
-function displayResult(totalSavings, perVehicleSavings) {
-    const totalSavingsElement = document.getElementById('totalSavingsValue');
-    const perVehicleSavingsElement = document.getElementById('perVehicleSavingsValue');
+function calculateTotalSavings(/* add parameters as needed */) {
+    // Perform total savings calculation
+    return 0;  // Replace with actual calculation
+}
 
-    totalSavingsElement.textContent = totalSavings.toFixed(2);
-    perVehicleSavingsElement.textContent = perVehicleSavings.toFixed(2);
+function calculatePerVehicleSavings(/* add parameters as needed */) {
+    // Perform per vehicle savings calculation
+    return 0;  // Replace with actual calculation
+}
+
+function displayResult(totalSavings, perVehicleSavings) {
+    document.getElementById('totalSavingsValue').textContent = totalSavings.toFixed(2);
+    document.getElementById('perVehicleSavingsValue').textContent = perVehicleSavings.toFixed(2);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
